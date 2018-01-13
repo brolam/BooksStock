@@ -45,9 +45,12 @@ namespace BooksStock.API.Controllers
         /// <summary>
         /// Adicionar um BookStock e atualizar a data do estoque. 
         /// </summary>
-        /// <param name="newBookStock">Informar o novo BookStock</param>
-        public BookStock Post(BookStock newBookStock)
+        /// <param name="bookName">Informar o nome do livro</param>
+        /// <param name="stockQuantity">Informar a quantidade em estoque do livro</param>
+        /// 
+        public BookStock Post(string bookName, int stockQuantity  )
         {
+            var newBookStock = new BookStock(bookName, stockQuantity);
             _booksStockDataBase.BooksStock.Add(newBookStock);
             return newBookStock;
         }

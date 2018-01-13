@@ -74,12 +74,11 @@ namespace BooksStock.API.Tests.Controllers
         public void ApiPostBookStock()
         {
             var expectStockUpdated = DateTime.Now;
-            var newBookStock = new BookStock("One BookStock", 10);
-            var savedBookStock = _booksStockController.Post(newBookStock);
+            var savedBookStock = _booksStockController.Post("One BookStock", 10);
             Assert.IsNotNull(savedBookStock.BookID);
-            Assert.AreEqual(newBookStock.BookName, savedBookStock.BookName);
-            Assert.AreEqual(newBookStock.StockQuantity, savedBookStock.StockQuantity);
-            Assert.IsTrue(newBookStock.StockUpdated >= expectStockUpdated, "A data do estoque não foi atualizada!");
+            Assert.AreEqual("One BookStock", savedBookStock.BookName);
+            Assert.AreEqual(10, savedBookStock.StockQuantity);
+            Assert.IsTrue(savedBookStock.StockUpdated >= expectStockUpdated, "A data do estoque não foi atualizada!");
         }
 
         [TestMethod]
