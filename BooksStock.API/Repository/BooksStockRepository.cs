@@ -1,7 +1,9 @@
 ﻿using System;
 using MongoDB.Driver;
-using BooksStock.API.Models;
+using MongoDB.Driver.Builders;
 using MongoDB.Bson;
+using System.Linq;
+using BooksStock.API.Models;
 
 namespace BooksStock.API.Repository
 {
@@ -39,6 +41,14 @@ namespace BooksStock.API.Repository
         /// <param name="id">informar uma string com o id do BookStock/param>
         /// <returns>Um BookStock ou Null para um ID inválido</returns>
         public BookStock Get(string id) => _booksStock.FindOneById(ObjectId.Parse(id));
+
+        public IQueryable<BookStock> GetAll(string fieldAscendingOrder)
+        {
+            var sortBy = SortBy.Ascending(fieldAscendingOrder);
+            MongoCursor<BookStock> cursor = _booksStock.FindAll().SetSortOrder(sortBy);
+            return cursor.AsQueryable<BookStock>();
+        }
+
 
     }
 }

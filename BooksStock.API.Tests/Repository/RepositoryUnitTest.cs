@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BooksStock.API.Repository;
 using BooksStock.API.Models;
@@ -8,12 +9,12 @@ namespace BooksStock.API.Tests.Repository
     [TestClass]
     public class RepositoryUnitTest
     {
-        BooksStockDataBase booksStockDataBase;
+        BooksStockDataBase _booksStockDataBase;
         [TestInitialize]
         public void SetUP()
         {
-            this.booksStockDataBase = new BooksStockDataBase();
-            this.booksStockDataBase.DropDataBase();
+            this._booksStockDataBase = new BooksStockDataBase();
+            this._booksStockDataBase.DropDataBase();
         }
         [TestMethod]
         public void BooksStockDataBaseCreateWithoutError()
@@ -27,7 +28,7 @@ namespace BooksStock.API.Tests.Repository
         {
             var expectStockUpdated = DateTime.Now;
             var bookStock = new BookStock("One BookStock", 10);
-            booksStockDataBase.BooksStock.Add(bookStock);
+            _booksStockDataBase.BooksStock.Add(bookStock);
             Assert.IsNotNull(bookStock.BookID);
             Assert.IsTrue(bookStock.StockUpdated >= expectStockUpdated, "A data do estoque não foi atualizada!");
             return bookStock;
@@ -37,9 +38,55 @@ namespace BooksStock.API.Tests.Repository
         public void GetOneBookStock()
         {
             var expectBookStock = InsertOneBookStock();
-            var bookStock = booksStockDataBase.BooksStock.Get(expectBookStock.BookID);
+            var bookStock = _booksStockDataBase.BooksStock.Get(expectBookStock.BookID);
             Assert.IsNotNull(bookStock);
             Assert.AreEqual(expectBookStock.BookID, bookStock.BookID);
+            Assert.AreEqual(expectBookStock.BookName, bookStock.BookName);
+            Assert.AreEqual(expectBookStock.StockQuantity, bookStock.StockQuantity);
+            Assert.AreEqual(expectBookStock.StockUpdated.ToLongDateString(), bookStock.StockUpdated.ToLongDateString());
+        }
+
+
+        [TestMethod]
+        public void GetAllBooksStockOrderedByBookName()
+        {
+            var first = 0;
+            var secound = 1;
+            BookStock[] expectBooksStock = { new BookStock("1 BookStock", 10), new BookStock("2 BookStock", 10), };
+            //Salvar os Books Stock em ordem decrescente
+            _booksStockDataBase.BooksStock.Add(expectBooksStock[secound]);
+            _booksStockDataBase.BooksStock.Add(expectBooksStock[first]);
+            var expectBooksStockOrderdByBookName = _booksStockDataBase.BooksStock.GetAll("BookName").GetEnumerator();
+            List<BookStock> booksStock = new List<BookStock>();
+            while (expectBooksStockOrderdByBookName.MoveNext())
+            {
+                var bookStock = expectBooksStockOrderdByBookName.Current;
+                booksStock.Add(bookStock);
+            }
+            //Verificar se os BooksStock foram recuperados em ordem ascendente
+            Assert.AreEqual(expectBooksStock[first].BookID, booksStock[first].BookID);
+            Assert.AreEqual(expectBooksStock[secound].BookID, booksStock[secound].BookID);
+        }
+
+        [TestMethod]
+        public void GetAllBooksStockOrderedByStockQuantity()
+        {
+            var first = 0;
+            var secound = 1;
+            BookStock[] expectBooksStock = { new BookStock("1 BookStock", 5), new BookStock("2 BookStock", 10), };
+            //Salvar os Books Stock em ordem decrescente
+            _booksStockDataBase.BooksStock.Add(expectBooksStock[secound]);
+            _booksStockDataBase.BooksStock.Add(expectBooksStock[first]);
+            var expectBooksStockOrderdByBookName = _booksStockDataBase.BooksStock.GetAll("StockQuantity").GetEnumerator();
+            List<BookStock> booksStock = new List<BookStock>();
+            while (expectBooksStockOrderdByBookName.MoveNext())
+            {
+                var bookStock = expectBooksStockOrderdByBookName.Current;
+                booksStock.Add(bookStock);
+            }
+            //Verificar se os BooksStock foram recuperados em ordem ascendente
+            Assert.AreEqual(expectBooksStock[first].BookID, booksStock[first].BookID);
+            Assert.AreEqual(expectBooksStock[secound].BookID, booksStock[secound].BookID);
         }
     }
 }
