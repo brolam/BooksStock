@@ -42,6 +42,11 @@ namespace BooksStock.API.Repository
         /// <returns>Um BookStock ou Null para um ID inválido</returns>
         public BookStock Get(string id) => _booksStock.FindOneById(ObjectId.Parse(id));
 
+        /// <summary>
+        /// Recuperar todos os BooksStock ordernado por um campo.
+        /// </summary>
+        /// <param name="fieldAscendingOrder">Informar o nome do campo</param>
+        /// <returns>Todos os BooksStock por ordem ascendente</returns>
         public IQueryable<BookStock> GetAll(string fieldAscendingOrder)
         {
             var sortBy = SortBy.Ascending(fieldAscendingOrder);
@@ -49,6 +54,10 @@ namespace BooksStock.API.Repository
             return cursor.AsQueryable<BookStock>();
         }
 
-
+        /// <summary>
+        /// Atualizar um BookStock
+        /// </summary>
+        /// <param name="bookStockUpdated">Informar o BookStock atualizado</param>
+        public void Update(BookStock bookStockUpdated) => _booksStock.Save(bookStockUpdated);
     }
 }

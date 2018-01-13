@@ -88,5 +88,20 @@ namespace BooksStock.API.Tests.Repository
             Assert.AreEqual(expectBooksStock[first].BookID, booksStock[first].BookID);
             Assert.AreEqual(expectBooksStock[secound].BookID, booksStock[secound].BookID);
         }
+
+        [TestMethod]
+        public void UpdateOneBookStock()
+        {
+            var expectStockUpdated = DateTime.Now;
+            var expectBookStock = InsertOneBookStock();
+            expectBookStock.BookName = "BookStock Updated";
+            expectBookStock.StockQuantity = 0;
+            _booksStockDataBase.BooksStock.Update(expectBookStock);
+            var bookStockUpdated = _booksStockDataBase.BooksStock.Get(expectBookStock.BookID);
+            Assert.AreEqual(expectBookStock.BookID, bookStockUpdated.BookID);
+            Assert.AreEqual(expectBookStock.BookName, bookStockUpdated.BookName);
+            Assert.AreEqual(expectBookStock.StockQuantity, bookStockUpdated.StockQuantity);
+            Assert.IsTrue(expectBookStock.StockUpdated < bookStockUpdated.StockUpdated);
+        }
     }
 }
