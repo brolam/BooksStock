@@ -59,5 +59,15 @@ namespace BooksStock.API.Repository
         /// </summary>
         /// <param name="bookStockUpdated">Informar o BookStock atualizado</param>
         public void Update(BookStock bookStockUpdated) => _booksStock.Save(bookStockUpdated);
+
+        /// <summary>
+        /// Excluir um BookStock
+        /// </summary>
+        /// <param name="bookID">Informar o id do BookStock </param>
+        public void Delete(string bookID)
+        {
+            var deleteQuery = Query<BookStock>.EQ(bookStock => bookStock.BookID, bookID);
+            _booksStock.Remove(deleteQuery);
+        }
     }
 }

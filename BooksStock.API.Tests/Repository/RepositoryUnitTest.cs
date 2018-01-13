@@ -103,5 +103,14 @@ namespace BooksStock.API.Tests.Repository
             Assert.AreEqual(expectBookStock.StockQuantity, bookStockUpdated.StockQuantity);
             Assert.IsTrue(expectBookStock.StockUpdated < bookStockUpdated.StockUpdated);
         }
+
+        [TestMethod]
+        public void DeleteOneBookStock()
+        {
+            var savedBookStock = InsertOneBookStock();
+            _booksStockDataBase.BooksStock.Delete(savedBookStock.BookID);
+            var deletedBookStock = _booksStockDataBase.BooksStock.Get(savedBookStock.BookID);
+            Assert.IsNull(deletedBookStock);
+        }
     }
 }
