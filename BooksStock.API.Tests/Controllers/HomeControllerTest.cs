@@ -9,7 +9,7 @@ namespace BooksStock.API.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void WebIndex()
         {
             // Organizar
             HomeController controller = new HomeController();

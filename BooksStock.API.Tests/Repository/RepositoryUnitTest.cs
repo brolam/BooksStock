@@ -19,13 +19,14 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void BooksStockDataBaseCreateWithoutError()
+        public void ModelBooksStockDataBaseCreateWithoutError()
         {
             var booksStockDataBase = new BooksStockDataBase();
             Assert.IsNotNull(booksStockDataBase);
         }
 
         [TestMethod]
+        public void ModelInsertOneBookStock() => this.InsertOneBookStock();
         public BookStock InsertOneBookStock()
         {
             var expectStockUpdated = DateTime.Now;
@@ -37,6 +38,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
+        public void ModelGetOneBookStock() => this.GetOneBookStock();
         public BookStock GetOneBookStock()
         {
             var expectBookStock = InsertOneBookStock();
@@ -49,8 +51,8 @@ namespace BooksStock.API.Tests.Repository
             return bookStock;
         }
 
-
         [TestMethod]
+        public void ModelGetAllBooksStockOrderedByBookName() => this.GetAllBooksStockOrderedByBookName();
         public List<BookStock> GetAllBooksStockOrderedByBookName()
         {
             var first = 0;
@@ -73,6 +75,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
+        public void ModelGetAllBooksStockOrderedByStockQuantity() => this.GetAllBooksStockOrderedByStockQuantity();
         public List<BookStock> GetAllBooksStockOrderedByStockQuantity()
         {
             var first = 0;
@@ -95,7 +98,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void UpdateOneBookStock()
+        public void ModelUpdateOneBookStock()
         {
             var expectStockUpdated = DateTime.Now;
             var expectBookStock = InsertOneBookStock();
@@ -110,7 +113,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void DeleteOneBookStock()
+        public void ModelDeleteOneBookStock()
         {
             var savedBookStock = InsertOneBookStock();
             _booksStockDataBase.BooksStock.Delete(savedBookStock.BookID);
@@ -119,7 +122,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void BookStockRequiredFields()
+        public void ModelBookStockRequiredFields()
         {
             Assert.ThrowsException<Exception>(
                 () => new BookStock(null, 10), "O campo BookName deve  validar valores vazio!"

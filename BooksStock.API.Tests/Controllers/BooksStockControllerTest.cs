@@ -22,7 +22,7 @@ namespace BooksStock.API.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetEmptyBooksStockList()
+        public void ApiGetEmptyBooksStockList()
         {
             var booksStock = _booksStockController.GetAll(fieldAscendingOrder: "BookName");
             Assert.AreEqual(booksStock.Count(), 0);
