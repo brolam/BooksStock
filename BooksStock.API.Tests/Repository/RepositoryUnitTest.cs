@@ -10,12 +10,14 @@ namespace BooksStock.API.Tests.Repository
     public class RepositoryUnitTest
     {
         BooksStockDataBase _booksStockDataBase;
+
         [TestInitialize]
-        public void SetUP()
+        public void SetUp()
         {
             this._booksStockDataBase = new BooksStockDataBase();
             this._booksStockDataBase.DropDataBase();
         }
+
         [TestMethod]
         public void BooksStockDataBaseCreateWithoutError()
         {
@@ -35,7 +37,7 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void GetOneBookStock()
+        public BookStock GetOneBookStock()
         {
             var expectBookStock = InsertOneBookStock();
             var bookStock = _booksStockDataBase.BooksStock.Get(expectBookStock.BookID);
@@ -44,11 +46,12 @@ namespace BooksStock.API.Tests.Repository
             Assert.AreEqual(expectBookStock.BookName, bookStock.BookName);
             Assert.AreEqual(expectBookStock.StockQuantity, bookStock.StockQuantity);
             Assert.AreEqual(expectBookStock.StockUpdated.ToLongDateString(), bookStock.StockUpdated.ToLongDateString());
+            return bookStock;
         }
 
 
         [TestMethod]
-        public void GetAllBooksStockOrderedByBookName()
+        public List<BookStock> GetAllBooksStockOrderedByBookName()
         {
             var first = 0;
             var secound = 1;
@@ -66,10 +69,11 @@ namespace BooksStock.API.Tests.Repository
             //Verificar se os BooksStock foram recuperados em ordem ascendente
             Assert.AreEqual(expectBooksStock[first].BookID, booksStock[first].BookID);
             Assert.AreEqual(expectBooksStock[secound].BookID, booksStock[secound].BookID);
+            return booksStock;
         }
 
         [TestMethod]
-        public void GetAllBooksStockOrderedByStockQuantity()
+        public List<BookStock> GetAllBooksStockOrderedByStockQuantity()
         {
             var first = 0;
             var secound = 1;
@@ -87,6 +91,7 @@ namespace BooksStock.API.Tests.Repository
             //Verificar se os BooksStock foram recuperados em ordem ascendente
             Assert.AreEqual(expectBooksStock[first].BookID, booksStock[first].BookID);
             Assert.AreEqual(expectBooksStock[secound].BookID, booksStock[secound].BookID);
+            return booksStock;
         }
 
         [TestMethod]

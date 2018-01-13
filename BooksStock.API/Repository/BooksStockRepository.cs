@@ -28,11 +28,11 @@ namespace BooksStock.API.Repository
         /// <summary>
         /// Adicionar um BookStock e atualizar a data do estoque. 
         /// </summary>
-        /// <param name="entity"></param>
-        public void Add(BookStock bookStock)
+        /// <param name="newBookStock"></param>
+        public void Add(BookStock newBookStock)
         {
-            bookStock.StockUpdated = DateTime.Now;
-            _booksStock.Insert(bookStock);
+            newBookStock.StockUpdated = DateTime.Now;
+            _booksStock.Insert(newBookStock);
         }
 
         /// <summary>
