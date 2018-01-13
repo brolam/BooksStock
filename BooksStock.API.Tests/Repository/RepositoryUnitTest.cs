@@ -23,13 +23,23 @@ namespace BooksStock.API.Tests.Repository
         }
 
         [TestMethod]
-        public void InsertOneBookStock()
+        public BookStock InsertOneBookStock()
         {
             var expectStockUpdated = DateTime.Now;
             var bookStock = new BookStock("One BookStock", 10);
             booksStockDataBase.BooksStock.Add(bookStock);
             Assert.IsNotNull(bookStock.BookID);
             Assert.IsTrue(bookStock.StockUpdated >= expectStockUpdated, "A data do estoque não foi atualizada!");
+            return bookStock;
+        }
+
+        [TestMethod]
+        public void GetOneBookStock()
+        {
+            var expectBookStock = InsertOneBookStock();
+            var bookStock = booksStockDataBase.BooksStock.Get(expectBookStock.BookID);
+            Assert.IsNotNull(bookStock);
+            Assert.AreEqual(expectBookStock.BookID, bookStock.BookID);
         }
     }
 }

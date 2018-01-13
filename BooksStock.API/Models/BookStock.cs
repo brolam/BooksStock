@@ -14,8 +14,8 @@ namespace BooksStock.API.Models
         public string BookName { get; set; }
         public int StockQuantity { get; set; }
         public DateTime StockUpdated { get; set; }
-        public BookStock(){}
- 
+        public BookStock() { }
+
         public BookStock(string nome, int stockQuantity)
         {
             this.BookName = nome;
