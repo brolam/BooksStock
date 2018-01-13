@@ -119,7 +119,9 @@ namespace BooksStock.API.Tests.Repository
             Assert.ThrowsException<Exception>(
                 () => new BookStock(null, 10), "O campo BookName deve  validar valores vazio!"
             );
-
+            Assert.ThrowsException<Exception>(
+                () => new BookStock("", 10), "O campo BookName deve  validar valores vazio!"
+            );
             Assert.ThrowsException<Exception>(
                 () => new BookStock("One BookStock", -1), "O campo Stock Quantity deve validar valores negativos!"
             );
