@@ -8,17 +8,42 @@ namespace BooksStock.API.Models
     /// </summary>
     public class BookStock
     {
+        private string _bookName;
+        private int _stockQuantity;
+
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string BookID { get; set; }
-        public string BookName { get; set; }
-        public int StockQuantity { get; set; }
+        public string BookName
+        {
+            get { return _bookName; }
+            set
+            {
+                if ((value == null) || (value.Length == 0))
+                {
+                    throw new System.Exception("Book Name não pode ser vazio");
+                }
+                _bookName = value;
+            }
+        }
+        public int StockQuantity
+        {
+            get { return _stockQuantity; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new System.Exception("Stock Quantity deve ser igual ou maior do zero!");
+                }
+                _stockQuantity = value;
+            }
+        }
         public DateTime StockUpdated { get; set; }
         public BookStock() { }
 
-        public BookStock(string nome, int stockQuantity)
+        public BookStock(string bookName, int stockQuantity)
         {
-            this.BookName = nome;
+            this.BookName = bookName;
             this.StockQuantity = stockQuantity;
         }
     }
