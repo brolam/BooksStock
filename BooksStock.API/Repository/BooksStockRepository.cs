@@ -38,9 +38,9 @@ namespace BooksStock.API.Repository
         /// <summary>
         /// Recupepar um BookStock por ID
         /// </summary>
-        /// <param name="id">informar uma string com o id do BookStock/param>
+        /// <param name="bookID">informar uma string com o id do BookStock/param>
         /// <returns>Um BookStock ou Null para um ID inválido</returns>
-        public BookStock Get(string id) => _booksStock.FindOneById(ObjectId.Parse(id));
+        public BookStock Get(string bookID) => _booksStock.FindOneById(ObjectId.Parse(bookID));
 
         /// <summary>
         /// Recuperar todos os BooksStock ordernado por um campo.
