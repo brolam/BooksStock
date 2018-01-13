@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using System.Net.Http;
-using System.Net;
-using System.Linq;
 using BooksStock.API.Repository;
 using BooksStock.API.Models;
 
@@ -48,7 +45,7 @@ namespace BooksStock.API.Controllers
         /// <param name="bookName">Informar o nome do livro</param>
         /// <param name="stockQuantity">Informar a quantidade em estoque do livro</param>
         /// 
-        public BookStock Post(string bookName, int stockQuantity  )
+        public BookStock Post(string bookName, int stockQuantity)
         {
             var newBookStock = new BookStock(bookName, stockQuantity);
             _booksStockDataBase.BooksStock.Add(newBookStock);
@@ -56,11 +53,17 @@ namespace BooksStock.API.Controllers
         }
 
         /// <summary>
-        /// Atualizar um BookStock
+        /// Atualizar um BookStock.
         /// </summary>
-        /// <param name="bookStockUpdated">Informar o BookStock atualizado</param>
-        public BookStock Put(BookStock bookStockUpdated)
+        /// <param name="bookID">Informar o id do livro</param>
+        /// <param name="bookName"> Informar o nome do livro</param>
+        /// <param name="stockQuantity">Informar a Quantidade em estoque do livro</param>
+        /// <returns>O BookStock atualizado.</returns>
+        public BookStock Put(string bookID, string bookName, int stockQuantity)
         {
+            var bookStockUpdated = _booksStockDataBase.BooksStock.Get(bookID);
+            bookStockUpdated.BookName = bookName;
+            bookStockUpdated.StockQuantity = stockQuantity;
             _booksStockDataBase.BooksStock.Update(bookStockUpdated);
             return bookStockUpdated;
         }

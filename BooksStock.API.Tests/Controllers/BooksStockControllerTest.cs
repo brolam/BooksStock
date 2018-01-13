@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BooksStock.API;
 using BooksStock.API.Controllers;
-using BooksStock.API.Repository;
 using BooksStock.API.Tests.Repository;
 using BooksStock.API.Models;
 
@@ -87,7 +80,11 @@ namespace BooksStock.API.Tests.Controllers
             var newBookStock = _repositoryUnitTest.InsertOneBookStock();
             newBookStock.BookName = "BookStock Updated";
             newBookStock.StockQuantity = 0;
-            var updatedBookStock = _booksStockController.Put(newBookStock);
+            var updatedBookStock = _booksStockController.Put(
+                newBookStock.BookID,
+                newBookStock.BookName,
+                newBookStock.StockQuantity
+            );
             this.AsserAreEqualBookStock(updatedBookStock, newBookStock); ;
         }
 
@@ -108,6 +105,4 @@ namespace BooksStock.API.Tests.Controllers
             Assert.AreEqual(expectBookStock.StockUpdated.ToLongDateString(), actualBookStock.StockUpdated.ToLongDateString());
         }
     }
-
-
 }
