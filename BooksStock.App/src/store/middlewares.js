@@ -10,6 +10,16 @@ export const appMiddleware = store => next => action => {
       })
       return next(action)
     }
+    case 'SAVE_BOOK_STOCK': {
+      var { booksStock } = store.getState().appProps
+      const { bookStock } = action
+      BooksStockAPI.post(bookStock).then( bookStockUpdated => {
+        console.log(bookStockUpdated, 123333)
+          booksStock = [bookStockUpdated, ...booksStock]
+          store.dispatch(returnBooksStock(booksStock))
+      })
+      return next(action)
+    }
     default:
       return next(action)
 

@@ -3,11 +3,15 @@ import PropTypes from 'prop-types'
 import SearchBar from '../components/SearchBar'
 import BookStockList from '../components/BookStockList'
 import WaitProcessModal from '../components/WaitProcessModal'
+import { newBookStock } from '../store/actions'
+
+import BookStockModal from '../components/BookStockModal'
 
 function HomePage({
-  booksStock,
+   booksStock,
   isShowWaitProcessModal = false,
-  }) {
+  isNewBookStock = false,
+  dispatch }) {
   return (
     <div className="app">
       <div className="main-page-header">
@@ -18,11 +22,11 @@ function HomePage({
       </div>
       <SearchBar
         placeholder="Search by book name"
-       />
+      />
       <div className="main-page-content">
         <BookStockList
           booksStock={booksStock}
-       />
+        />
       </div>
       {
         isShowWaitProcessModal && (
@@ -31,7 +35,8 @@ function HomePage({
           />
         )
       }
-      <div className="flat-button" >
+      {isNewBookStock && (<BookStockModal bookStock={{}} dispatch={dispatch} />)}
+      <div className="flat-button" onClick={() => dispatch(newBookStock())} >
         <a className="add">Add BookStock</a>
       </div>
     </div>

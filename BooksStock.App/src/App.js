@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() { 
-    this.props.dispatchRequestBooksStock("BookName")
+    this.props.dispatchRequestBooksStock()
   }
   
   componentWillUpdate() {
@@ -30,11 +30,10 @@ function mapStateToProps({ appProps }, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {  
-    dispatchRequestBooksStock: (fieldAscendingOrder) =>{
-      dispatch(requestBooksStock(fieldAscendingOrder))
-    },
+    dispatchRequestBooksStock: () => dispatch(requestBooksStock()),
     onSearch: (value) => {
-    }
+    },
+    dispatch
   }
 }
 
