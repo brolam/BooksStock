@@ -8,7 +8,7 @@ namespace BooksStock.API.Controllers
     public class BooksStockController : ApiController
     {
         private readonly BooksStockDataBase _booksStockDataBase;
-
+        
         public BooksStockController()
         {
             _booksStockDataBase = new BooksStockDataBase();
@@ -19,6 +19,7 @@ namespace BooksStock.API.Controllers
         /// </summary>
         /// <param name="fieldAscendingOrder">Informar o nome do campo</param>
         /// <returns>Todos os BooksStock por ordem ascendente</returns>
+        [HttpGet, HttpOptions]
         public IEnumerable<BookStock> GetAll(string fieldAscendingOrder)
         {
             var booksStockCurso = _booksStockDataBase.BooksStock.GetAll("BookName").GetEnumerator();
