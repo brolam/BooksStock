@@ -1,0 +1,459 @@
+/* All pages */
+html, body, .root {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+}
+body, .app {
+  background: white;
+}
+
+/* main page */
+.main-page-header-title {
+  flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  background: #050505;
+  text-align: center;
+}
+
+.main-page-header-title span {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-image: url('./logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 48px;
+  font-size: 0;
+}
+
+.main-page-header-title h1 {
+  font-weight: 400;
+  margin: 0;
+  color: white;
+}
+
+.main-page-header-title select {
+  margin-left: 25px;
+  width: 200px;
+  margin-top: 7px;
+  height: 34px;
+  font-size: 18px;
+  color: white;
+  background: #60ac5d;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+.main-page-content {
+  padding: 0 0 80px;
+  flex: 1;
+}
+
+/* search component */
+.search-bar {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  width: 293px;
+  height: 48px;
+  margin-right: 15px;
+}
+
+.search-bar input {
+  width: 290px;
+  height: 48px;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  color: white;
+  background: #050505;
+  border: #050505
+}
+
+@media (max-width: 600px) {
+  .search-bar {
+    position: static;
+    width: 100%;
+    right: unset;
+  }
+  .search-bar input {
+    width: 100%;
+  }
+}
+
+
+/* post component */
+.posts {
+  padding: 0 10px 20px;
+}
+
+@media (min-width: 600px) {
+  .posts {
+    padding: 0 20px 40px;
+  }
+}
+/* posts */
+.posts-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+.posts-title span {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.posts-list {
+  text-align: left;
+}
+
+.flat-button {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+
+.add {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2e7d32;
+  background-image: url('./icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+
+.order-options {
+  width: 100%;
+  text-align: right;
+}
+
+.order-options select {
+  margin-left: 25px;
+  width: 150px;
+  height: 24px;
+  font-size: 12px;
+  color: white;
+  background: #60ac5d;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+/* BookStock */
+.bookStock {
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 6px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  cursor:pointer;
+}
+
+.bookStock-header {
+  widows: 100%;
+  display: flex;
+}
+
+.bookStock-name{
+  width: 80%;
+}
+
+.bookStock-header-title {
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.bookStock-updated { 
+  text-align: right;
+  width: 20%;
+  align-items: flex-end;
+}
+
+.bookStock-updated span,
+.bookStock-quantity{
+  color: #999;  
+}
+
+.bookStock-body {
+  display: inline;
+}
+
+.bookStock-footer, .bookStock-comment-footer {
+  flex: 1;
+  text-align: right;
+}
+
+.bookStock-footer .count-comments {
+  display: initial;
+  align-items: left;
+  background-color: #155724;
+  border-color: #155724;
+}
+
+.edit-button, .delete-button, .save-button {
+  padding: 0.35em 0.5em;
+  margin: 0px 3px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.edit-button
+{
+  background-color: #0062cc;
+  border-color: #0062cc;
+}
+
+.delete-button
+{
+  background-color: #cc0000;
+  border-color: #cc0000;
+}
+
+.bookStock-page-author {
+  padding-right: 10px;
+  display: block;
+  color: #999;  
+}
+
+
+/* The Modal (background) */
+.modal, .modal-short {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-open {
+  display: block;
+}
+
+.modal-dialog {
+  display: block;
+  margin: 15% auto; /* 15% from the top and centered */
+  width: 70%; /* Could be more or less, depending on screen size */
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+@media (max-width: 700px) {
+  .modal-dialog  {
+    width: 90%;
+  }
+}
+
+.modal-heard {
+  margin: -1px -1px -0px -1px;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  background: #050505;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.modal-heard span {
+  width: 28px;
+  height: 28px;
+  margin-top: 2px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-image: url('./icons/arrow-back.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  font-size: 0;
+}
+
+.modal-heard h1 {
+  font-size: 20px;
+  margin: 0 0 0 10px;
+  color: white;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 10px;
+  width: 100%; /* Could be more or less, depending on screen size */
+}
+
+.modal-footer {
+  flex: 1;
+  text-align: right;
+}
+
+/* Modal New Post and Comment */
+.modal-post input {
+  margin-left: 3px;
+  width: 92%;
+  height: 20px;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  color: white;
+  background: #050505;
+  border: #050505
+}
+
+.modal-post textarea, .modal-comment textarea {
+  border: #050505;
+  width: 100%;
+  height: 100px;
+  font-size: 1.25em;
+}
+
+.modal-post select {
+  width: 150px;
+  height: 28px;
+  font-size: 18px;
+  color: white;
+  background: #868e96;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+
+}
+
+/*Modal short Menssages and Question */
+.modal-short{
+  background-color: transparent;
+}
+
+.modal-short-dialog {
+  display: block;
+  text-align: center;
+  margin: 15% auto; /* 15% from the top and centered */
+  width: 60%; /* Could be more or less, depending on screen size */
+  height: align-self;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  background-color: rgb(39, 32, 32);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+@media (max-width: 700px) {
+  .modal-short-dialog  {
+    width: 90%;
+  }
+}
+
+.modal-short-dialog h1 {
+  font-size: 14px;
+  margin: 10px;
+  color: white;
+}
+
+.modal-short-dialog .yes {
+  font-size: 14px;
+  margin: 10px;
+  color: #0062cc;
+}
+
+.modal-short-dialog .no {
+  font-size: 14px;
+  margin: 10px;
+  color: #dc3545;
+}
+
+/*Wait process modal */
+.wait-process-dialog {
+  display: block;
+  width: 30%;
+}
+
+.wait-process-dialog h1 {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 10px;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .wait-process-dialog {
+    display: block;
+    width: 90%;
+  }
+}
+
+/*Error message modal */
+.error-message-dialog {
+  background-color: #dc3545;
+  display: block;
+  width: 30%;
+}
+
+.error-message-dialog h1 {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 10px;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .error-message-dialog {
+    display: block;
+    width: 90%;
+  }
+}
+
+/*For validate inputs fields*/
+input[type=text],
+input[type=email],
+input[type=number],
+textarea,
+fieldset {
+/* required to properly style form 
+   elements on WebKit based browsers */
+  -webkit-appearance: none;
+  
+  border: 1px solid #333;
+  margin: 0;
+  
+  font-family: inherit;
+  font-size: 90%;
+  
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input:invalid, textarea:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid, textarea:invalid {
+  outline: none;
+}
