@@ -85,31 +85,29 @@ body, .app {
   }
 }
 
-
-/* post component */
-.posts {
+.booksStock {
   padding: 0 10px 20px;
 }
 
 @media (min-width: 600px) {
-  .posts {
+  .booksStock {
     padding: 0 20px 40px;
   }
 }
-/* posts */
-.posts-title {
+/* booksStock */
+.booksStock-title {
   margin-top: 10px;
   margin-bottom: 10px;
   flex-wrap: nowrap;
   display: flex;
 }
 
-.posts-title span {
+.booksStock-title span {
   font-size: 1.25em;
   font-weight: bold;
 }
 
-.posts-list {
+.booksStock-list {
   text-align: left;
 }
 
@@ -313,8 +311,7 @@ body, .app {
   text-align: right;
 }
 
-/* Modal New Post and Comment */
-.modal-post input {
+.modal-bookStock input {
   margin-left: 3px;
   width: 92%;
   height: 20px;
@@ -325,14 +322,14 @@ body, .app {
   border: #050505
 }
 
-.modal-post textarea, .modal-comment textarea {
+.modal-bookStock textarea, .modal-comment textarea {
   border: #050505;
   width: 100%;
   height: 100px;
   font-size: 1.25em;
 }
 
-.modal-post select {
+.modal-bookStock select {
   width: 150px;
   height: 28px;
   font-size: 18px;

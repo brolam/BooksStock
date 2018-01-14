@@ -14,17 +14,15 @@ function BookStockItem(props) {
           <span className="published">{Moment(bookStock.StockUpdated).from(new Date())}</span>
         </div>
       </div>
-      <div className="bookStock-quantity">by {bookStock.StockQuantity}</div>
+      <div className="bookStock-quantity">Estoque {bookStock.StockQuantity}</div>
       <div className="bookStock-footer">
         <button className="edit-button" href="/"
           onClick={e => {
             e.stopPropagation()
-            props.goPostEdit(bookStock)
           }}>Edit</button>
         <button className="delete-button"
           onClick={e => {
             e.stopPropagation()
-            props.goPostDelete(bookStock)
           }
           }>Delete</button>
       </div>
