@@ -11,6 +11,8 @@ function HomePage({
    booksStock,
   isShowWaitProcessModal = false,
   isNewBookStock = false,
+  isEditBookStock = false,
+  selectedBookStock = undefined,
   dispatch }) {
   return (
     <div className="app">
@@ -26,6 +28,7 @@ function HomePage({
       <div className="main-page-content">
         <BookStockList
           booksStock={booksStock}
+          dispatch={dispatch}
         />
       </div>
       {
@@ -36,6 +39,7 @@ function HomePage({
         )
       }
       {isNewBookStock && (<BookStockModal bookStock={{}} dispatch={dispatch} />)}
+      {isEditBookStock && (<BookStockModal bookStock={selectedBookStock} dispatch={dispatch} />)}
       <div className="flat-button" onClick={() => dispatch(newBookStock())} >
         <a className="add">Add BookStock</a>
       </div>

@@ -17,6 +17,13 @@ export function newBookStock() {
   }
 }
 
+export function editBookStock(bookStock) {
+  return {
+    type: 'EDIT_BOOK_STOCK',
+    bookStock
+  }
+}
+
 export function saveBookStock(bookStock) {
   return {
     type: 'SAVE_BOOK_STOCK',

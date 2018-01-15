@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import OrderOptions from '../components/OrderOptions'
 import BookStockItem from '../components/BookStockItem'
 
-function BookStockList({booksStock}) {
+function BookStockList({booksStock, dispatch }) {
   return (
     <div className="booksStock">
       <div className="booksStock-title">
@@ -16,6 +16,7 @@ function BookStockList({booksStock}) {
             <BookStockItem
               key={bookStock.BookID}
               bookStock={bookStock}
+              dispatch={dispatch}
             />
           )
         })}

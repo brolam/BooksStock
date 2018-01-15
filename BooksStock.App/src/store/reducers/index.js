@@ -7,7 +7,8 @@ const HOME_INITIAL_STATE = {
   isShowWaitProcessModal: false,
   isNewBookStock: false,
   isEditBookStock: false,
-  isDeleteBookStock: false
+  isDeleteBookStock: false,
+  selectedBookStock: undefined
 };
 
 function appProps(state = HOME_INITIAL_STATE, action) {
@@ -29,6 +30,10 @@ function appProps(state = HOME_INITIAL_STATE, action) {
     }
     case 'NEW_BOOK_STOCK': {
       return { ...state, isNewBookStock: true }
+    }
+    case 'EDIT_BOOK_STOCK': {
+      const { bookStock } = action
+      return { ...state, isEditBookStock: true , selectedBookStock: bookStock }
     }
     default:
       return state

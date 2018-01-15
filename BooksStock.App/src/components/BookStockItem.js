@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Moment from 'moment';
+import { editBookStock } from '../store/actions'
 
 function BookStockItem(props) {
-  const { bookStock } = props
+  const { bookStock, dispatch } = props
   return (
     <div className="bookStock" onClick={props.onSelected}>
       <div className="bookStock-header">
@@ -16,10 +17,8 @@ function BookStockItem(props) {
       </div>
       <div className="bookStock-quantity">Estoque {bookStock.StockQuantity}</div>
       <div className="bookStock-footer">
-        <button className="edit-button" href="/"
-          onClick={e => {
-            e.stopPropagation()
-          }}>Edit</button>
+        <button className="edit-button"
+          onClick={e => dispatch(editBookStock(bookStock))} >Edit</button>
         <button className="delete-button"
           onClick={e => {
             e.stopPropagation()
