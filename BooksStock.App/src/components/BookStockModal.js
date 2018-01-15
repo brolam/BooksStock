@@ -1,4 +1,5 @@
 import React from 'react'
+import { parseReportValidityMethod } from './utils/FormReportValidity'
 import { saveBookStock } from '../store/actions'
 import { requestBooksStock} from '../store/actions'
 
@@ -8,12 +9,14 @@ let inputStockQuantity
 function BookStockModal(props) {
   const { bookStock , dispatch } = props
   function parseFields(e) {
+    parseReportValidityMethod(inputBookName)
+    parseReportValidityMethod(inputStockQuantity)
     if (inputBookName.reportValidity() && inputStockQuantity.reportValidity()) {
-      const bs =  getUpdateBookStock(bookStock, inputBookName.value, inputStockQuantity.value)
-      console.log(bs)
-      dispatch(saveBookStock(bs))
+      const updatedBS =  getUpdateBookStock(bookStock, inputBookName.value, inputStockQuantity.value)
+      dispatch(saveBookStock(updatedBS))
     }
   }
+
   return (
     <div id="bookStockModal" className="modal modal-open" >
       <div className="modal-dialog">
@@ -39,7 +42,7 @@ function BookStockModal(props) {
             required
           />
           <div className="modal-footer">
-            <button className={"save-button "}
+            <button className={"save-button"}
               onClick={parseFields}>Save
           </button>
           </div>
