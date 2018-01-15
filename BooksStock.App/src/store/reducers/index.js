@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 const HOME_INITIAL_STATE = {
-  searchValeu: undefined,
+  searchValeu: '',
   booksStock: [],
   fieldAscendingOrder: 'BookName',
   isShowWaitProcessModal: false,
@@ -34,11 +34,15 @@ function appProps(state = HOME_INITIAL_STATE, action) {
     }
     case 'EDIT_BOOK_STOCK': {
       const { bookStock } = action
-      return { ...state, isEditBookStock: true , selectedBookStock: bookStock }
+      return { ...state, isEditBookStock: true, selectedBookStock: bookStock }
     }
     case 'REQUEST_DELETE_BOOK_STOCK': {
       const { bookStock } = action
-      return { ...state, isDeleteBookStock: true , selectedBookStock: bookStock }
+      return { ...state, isDeleteBookStock: true, selectedBookStock: bookStock }
+    }
+    case 'SEARCH_BOOK_STOCK': {
+      const { searchValeu } = action
+      return { ...state, searchValeu }
     }
     default:
       return state

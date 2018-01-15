@@ -44,3 +44,10 @@ export function saveBookStock(bookStock) {
     bookStock
   }
 }
+
+export function searchBookStock(searchValeu) {
+  return {
+    type: 'SEARCH_BOOK_STOCK',
+    searchValeu
+  }
+}
