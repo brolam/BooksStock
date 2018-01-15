@@ -51,3 +51,10 @@ export function searchBookStock(searchValeu) {
     searchValeu
   }
 }
+
+export function changeFieldAscendingOrder(field) {
+  return {
+    type: 'CHANGE_FIELD_ASCENDING_ORDER',
+    field
+  }
+}

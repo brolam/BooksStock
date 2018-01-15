@@ -44,6 +44,10 @@ function appProps(state = HOME_INITIAL_STATE, action) {
       const { searchValeu } = action
       return { ...state, searchValeu }
     }
+    case 'CHANGE_FIELD_ASCENDING_ORDER': {
+      const { field } = action
+      return { ...state, fieldAscendingOrder : field }
+    }
     default:
       return state
   }
