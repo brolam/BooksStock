@@ -22,7 +22,7 @@ namespace BooksStock.API.Controllers
         [HttpOptions]
         public IEnumerable<BookStock> GetAll(string fieldAscendingOrder)
         {
-            var booksStockCurso = _booksStockDataBase.BooksStock.GetAll("BookName").GetEnumerator();
+            var booksStockCurso = _booksStockDataBase.BooksStock.GetAll(fieldAscendingOrder).GetEnumerator();
             List<BookStock> booksStock = new List<BookStock>();
             while (booksStockCurso.MoveNext())
             {
