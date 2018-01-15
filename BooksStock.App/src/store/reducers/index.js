@@ -26,6 +26,7 @@ function appProps(state = HOME_INITIAL_STATE, action) {
         isNewBookStock: false,
         isEditBookStock: false,
         isDeleteBookStock: false,
+        selectedBookStock: undefined
       }
     }
     case 'NEW_BOOK_STOCK': {
@@ -34,6 +35,10 @@ function appProps(state = HOME_INITIAL_STATE, action) {
     case 'EDIT_BOOK_STOCK': {
       const { bookStock } = action
       return { ...state, isEditBookStock: true , selectedBookStock: bookStock }
+    }
+    case 'REQUEST_DELETE_BOOK_STOCK': {
+      const { bookStock } = action
+      return { ...state, isDeleteBookStock: true , selectedBookStock: bookStock }
     }
     default:
       return state

@@ -3,15 +3,16 @@ import PropTypes from 'prop-types'
 import SearchBar from '../components/SearchBar'
 import BookStockList from '../components/BookStockList'
 import WaitProcessModal from '../components/WaitProcessModal'
-import { newBookStock } from '../store/actions'
-
+import { newBookStock, deleteBookStock, requestBooksStock } from '../store/actions'
 import BookStockModal from '../components/BookStockModal'
+import QuestionModal from '../components/QuestionModal'
 
 function HomePage({
    booksStock,
   isShowWaitProcessModal = false,
   isNewBookStock = false,
   isEditBookStock = false,
+  isDeleteBookStock = false,
   selectedBookStock = undefined,
   dispatch }) {
   return (
@@ -40,6 +41,13 @@ function HomePage({
       }
       {isNewBookStock && (<BookStockModal bookStock={{}} dispatch={dispatch} />)}
       {isEditBookStock && (<BookStockModal bookStock={selectedBookStock} dispatch={dispatch} />)}
+      {isDeleteBookStock && (
+        <QuestionModal
+          message={"Confirmar a exclução?"}
+          onYesAnswer={() => dispatch(deleteBookStock(selectedBookStock))}
+          onNoAnswer={() => dispatch(requestBooksStock())}
+          timeout={10000}
+        />)}
       <div className="flat-button" onClick={() => dispatch(newBookStock())} >
         <a className="add">Add BookStock</a>
       </div>

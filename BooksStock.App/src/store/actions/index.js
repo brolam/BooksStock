@@ -24,6 +24,20 @@ export function editBookStock(bookStock) {
   }
 }
 
+export function requestDeleteBookStock(bookStock) {
+  return {
+    type: 'REQUEST_DELETE_BOOK_STOCK',
+    bookStock
+  }
+}
+
+export function deleteBookStock(bookStock) {
+  return {
+    type: 'DELETE_BOOK_STOCK',
+    bookStock
+  }
+}
+
 export function saveBookStock(bookStock) {
   return {
     type: 'SAVE_BOOK_STOCK',
