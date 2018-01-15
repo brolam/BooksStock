@@ -315,7 +315,7 @@ body, .app {
 .modal-footer {
   flex: 1;
   padding: 10px;
-  text-align: right;
+  text-align: center;
 }
 
 .modal-heard input {
