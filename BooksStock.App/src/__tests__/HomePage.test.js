@@ -13,6 +13,53 @@ test('render without error', () => {
   );
 })
 
+test('showWaitProcessModal', () => {
+  ReactDOM.render(
+    <HomePage
+      booksStock={booksStock}
+      isShowWaitProcessModal={true}
+    />, document.createElement('div')
+  );
+})
+
+test('newBookStock', () => {
+  ReactDOM.render(
+    <HomePage
+      booksStock={booksStock}
+      isNewBookStock={true}
+    />, document.createElement('div')
+  );
+})
+
+test('editBookStock', () => {
+  ReactDOM.render(
+    <HomePage
+      booksStock={booksStock}
+      isEditBookStock={true}
+      selectedBookStock={booksStock[0]}
+    />, document.createElement('div')
+  );
+})
+
+test('deleteBookStock', () => {
+  ReactDOM.render(
+    <HomePage
+      booksStock={booksStock}
+      isDeleteBookStock={true}
+      selectedBookStock={booksStock[0]}
+    />, document.createElement('div')
+  );
+})
+
+test('searchBookStock', () => {
+  ReactDOM.render(
+    <HomePage
+      booksStock={booksStock}
+      searchValeu={"1 BookStock"}
+    />, document.createElement('div')
+  );
+})
+
 const booksStock = [
   {
     BookID: "1a5b297e1044f119a8912c4f",

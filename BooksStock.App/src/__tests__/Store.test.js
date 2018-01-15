@@ -1,17 +1,18 @@
 import {
- requestBooksStock,
- returnBooksStock
+  requestBooksStock,
+  returnBooksStock
 } from '../store/actions'
 import store from '../store'
 
 const HOME_INITIAL_STATE = {
-  searchValeu : undefined,
+  searchValeu: '',
   booksStock: [],
   fieldAscendingOrder: 'BookName',
   isShowWaitProcessModal: false,
+  isNewBookStock: false,
   isEditBookStock: false,
   isDeleteBookStock: false,
-  selectedBookStoc:  undefined
+  selectedBookStock: undefined
 };
 
 test('home store initial state', () => {
