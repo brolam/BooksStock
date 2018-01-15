@@ -5,19 +5,27 @@ const fetchOption = (method) => ({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-  },
+  }
 })
 
+function encodeData(data) {
+  return Object.keys(data).map((key) => {
+    return [key, data[key]].map(encodeURIComponent).join("=");
+  }).join("&");
+}
+
 BooksStockAPI.get = (fieldAscendingOrder) =>
-  fetch(`${api}api/BooksStock?fieldAscendingOrder=${fieldAscendingOrder}`, fetchOption('OPTIONS'))
+  fetch(`${api}api/BooksStock?fieldAscendingOrder=${fieldAscendingOrder}`, fetchOption('GET'))
     .then(res => res.json())
 
-BooksStockAPI.post = (bookStock) =>
-  fetch(`${api}api/BooksStock?bookName=${bookStock.BookName}&stockQuantity=${bookStock.StockQuantity}`, fetchOption('OPTIONS'))
-    .then(res => res.json())
+BooksStockAPI.save = (bookStock) =>
+  fetch(`${api}api/BooksStock?${encodeData(bookStock)}`,
+    bookStock.BookID
+      ? fetchOption('PUT')
+      : fetchOption('POST')
+  ).then(res => res.json())
 
 BooksStockAPI.delete = (bookStock) =>
-  fetch(`${api}api/BooksStock?bookID=${bookStock.BookID}`, fetchOption('GET'))
+  fetch(`${api}api/BooksStock?bookID=${bookStock.BookID}`, fetchOption('DELETE'))
 
 export default BooksStockAPI;
-

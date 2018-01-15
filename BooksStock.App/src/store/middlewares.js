@@ -13,7 +13,7 @@ export const appMiddleware = store => next => action => {
     case 'SAVE_BOOK_STOCK': {
       const { booksStock } = store.getState().appProps
       const { bookStock } = action
-      BooksStockAPI.post(bookStock).then(bookStockUpdated => {
+      BooksStockAPI.save(bookStock).then(bookStockUpdated => {
         const booksStockWithoutBSUpdated = booksStock.filter(bookStock => bookStock.BookID !== bookStockUpdated.BookID)
         const booksStockUpdated = [bookStockUpdated, ...booksStockWithoutBSUpdated]
         store.dispatch(returnBooksStock(booksStockUpdated))
