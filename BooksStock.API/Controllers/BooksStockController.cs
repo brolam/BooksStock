@@ -19,7 +19,7 @@ namespace BooksStock.API.Controllers
         /// </summary>
         /// <param name="fieldAscendingOrder">Informar o nome do campo</param>
         /// <returns>Todos os BooksStock por ordem ascendente</returns>
-        [HttpGet, HttpOptions]
+        [HttpOptions]
         public IEnumerable<BookStock> GetAll(string fieldAscendingOrder)
         {
             var booksStockCurso = _booksStockDataBase.BooksStock.GetAll("BookName").GetEnumerator();
@@ -46,6 +46,7 @@ namespace BooksStock.API.Controllers
         /// <param name="bookName">Informar o nome do livro</param>
         /// <param name="stockQuantity">Informar a quantidade em estoque do livro</param>
         /// 
+        [HttpOptions]
         public BookStock Post(string bookName, int stockQuantity)
         {
             var newBookStock = new BookStock(bookName, stockQuantity);
@@ -60,6 +61,7 @@ namespace BooksStock.API.Controllers
         /// <param name="bookName"> Informar o nome do livro</param>
         /// <param name="stockQuantity">Informar a Quantidade em estoque do livro</param>
         /// <returns>O BookStock atualizado.</returns>
+        [HttpOptions]
         public BookStock Put(string bookID, string bookName, int stockQuantity)
         {
             var bookStockUpdated = _booksStockDataBase.BooksStock.Get(bookID);
@@ -73,6 +75,7 @@ namespace BooksStock.API.Controllers
         /// Excluir um BookStock
         /// </summary>
         /// <param name="bookID">Informar o id do BookStock</param>
+        [HttpOptions]
         public void Delete(string bookID) => _booksStockDataBase.BooksStock.Delete(bookID);
     }
 }
